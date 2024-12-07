@@ -4,6 +4,13 @@ export interface IJsonResponse{
     data:any
 }
 
+export interface ICategory{
+    categoryId:number,
+    categoryName:string,
+    parentCategoryId:number,
+    userId:number
+}
+
 export interface IProduct {
     productId: number
     productSku: string

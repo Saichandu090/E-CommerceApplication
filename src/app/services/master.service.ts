@@ -15,4 +15,9 @@ export class MasterService {
   getAllProducts(): Observable<IJsonResponse> {
     return this.http.get<IJsonResponse>(this.baseURL + "GetAllProducts");
   }
+
+  GetAllCategory(): Observable<IJsonResponse> {
+    return this.http.get<IJsonResponse>(this.baseURL + "GetAllCategory");
+  }
+
 }
