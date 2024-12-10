@@ -34,6 +34,14 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
             <!-- Icon -->
+             @if (loggedInUser.CustId==0) {
+                <button class="btn btn-success btn-sm" (click)="openLoginModel()">Login</button>
+                <button class="btn btn-success btn-sm mx-2" (click)="openRegisterModel()">Register</button>
+             }@else {
+                <button class="btn btn-primary btn-sm">{{loggedInUser.name}}</button>
+                <button class="btn btn-danger btn-sm mx-2" (click)="onLogOut()">Logout</button>
+             }
+        
             <a class="link-secondary me-3" href="#">
                 <i class="fa fa-shopping-cart"></i>
             </a>
@@ -113,3 +121,67 @@
 </nav>
 
 <router-outlet/>
+
+<div id="myModal" class="modal" #registerModel>
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Register</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeRegisterModel()"></button>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+                <label for="">Name</label>
+                <input type="text" [(ngModel)]="registerObj.name" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="">Mobile Number</label>
+                <input type="text" [(ngModel)]="registerObj.MobileNo" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="">Password</label>
+                <input type="text" [(ngModel)]="registerObj.Password" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeRegisterModel()">Close</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onRegister()">Register</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+  <div id="myModal" class="modal" #loginModel>
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeLoginModel()"></button>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+                <label for="">UserName</label>
+                <input type="text" [(ngModel)]="loginObj.UserName" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="">Password</label>
+                <input type="text" [(ngModel)]="loginObj.UserPassword" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeLoginModel()">Close</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onLogin()">Login</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

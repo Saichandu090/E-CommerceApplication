@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IJsonResponse } from '../model/interface/response';
+import { Customer, IJsonResponse, Login } from '../model/interface/response';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +20,20 @@ export class MasterService {
     return this.http.get<IJsonResponse>(this.baseURL + "GetAllCategory");
   }
 
+  GetAllProductsByCategoryId(categoryId: number): Observable<IJsonResponse> {
+    const url = `${this.baseURL}GetAllProductsByCategoryId?id=${categoryId}`;
+    return this.http.get<IJsonResponse>(url);
+  }
+
+  registerNewCustomer(customer: Customer): Observable<IJsonResponse> {
+    debugger;
+    const url = `${this.baseURL}RegisterCustomer`;
+    return this.http.post<IJsonResponse>(url,customer);
+  }
+
+  loginCustomer(login: Login): Observable<IJsonResponse> {
+    debugger;
+    const url = `${this.baseURL}Login`;
+    return this.http.post<IJsonResponse>(url,login);
+  }
 }

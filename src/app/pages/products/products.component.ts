@@ -46,4 +46,12 @@ export class ProductsComponent implements OnInit ,OnDestroy{
         element.unsubscribe()
       })
   }
+
+  //==============================================//
+
+  getProductByCategoryId(categoryId:number){
+    this.masterService.GetAllProductsByCategoryId(categoryId).subscribe((res:IJsonResponse)=>{
+      this.productList.set(res.data);
+    })
+  }
 }
