@@ -34,7 +34,7 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
             <!-- Icon -->
-             @if (loggedInUser.CustId==0) {
+             @if (loggedInUser.custId==0) {
                 <button class="btn btn-success btn-sm" (click)="openLoginModel()">Login</button>
                 <button class="btn btn-success btn-sm mx-2" (click)="openRegisterModel()">Register</button>
              }@else {
@@ -42,17 +42,17 @@
                 <button class="btn btn-danger btn-sm mx-2" (click)="onLogOut()">Logout</button>
              }
         
-            <a class="link-secondary me-3" href="#">
-                <i class="fa fa-shopping-cart"></i>
+            <a class="link-secondary me-3" >
+                <i class="fa fa-shopping-cart text-white" (click)="showCartPopUp()"></i>
             </a>
-            <!-- <div class="dropdown-menu dropdown-menu-end show" style="position: absolute;
+            <div [className]="isPopUpOpen ? 'dropdown-menu dropdown-menu-end hide' : 'dropdown-menu dropdown-menu-end show'" style="position: absolute;
             right: 13px;top:60px" aria-labelledby="navbarDropdownMenuAvatar">
                 <div class="row">
                     <div class="col-8">
                         <h6>Cart Items</h6>
                     </div>
                     <div class="col-4 text-end">
-                        <i class="fa fa-close p-2"></i>
+                        <i class="fa fa-close p-2" (click)="showCartPopUp()"></i>
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div> -->
+            </div>
         </div>
     </div>
 </nav>

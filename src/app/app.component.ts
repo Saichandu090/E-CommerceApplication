@@ -75,7 +75,7 @@ export class AppComponent implements OnInit{
   onLogin(){
     this.masterService.loginCustomer(this.loginObj).subscribe((res:IJsonResponse)=>{
       if(res.result){
-        //this.loggedInUser=res.data;
+        this.loggedInUser=res.data;
         alert("Login Success")
         localStorage.setItem(Constant.LOCAL_LEY,JSON.stringify(res.data))
         this.closeLoginModel()
@@ -88,6 +88,14 @@ export class AppComponent implements OnInit{
   onLogOut(){
     localStorage.removeItem(Constant.LOCAL_LEY);
     this.loggedInUser=new Customer();
+  }
+
+  //=====================================//
+
+  isPopUpOpen:boolean=false;
+
+  showCartPopUp(){
+    this.isPopUpOpen=!this.isPopUpOpen
   }
 
 }
