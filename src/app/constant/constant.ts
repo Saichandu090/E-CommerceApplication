@@ -1,3 +1,3 @@
-export const Constant={
-    LOCAL_LEY:'ecom18'
+export const Constant = {
+    LOCAL_LEY: 'ecom18'
 }

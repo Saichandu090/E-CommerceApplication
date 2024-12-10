@@ -1,37 +1,37 @@
-export interface IJsonResponse{
-    result:boolean,
-    message:string,
-    data:any
+export interface IJsonResponse {
+    result: boolean,
+    message: string,
+    data: any
 }
 
-export interface ICategory{
-    categoryId:number,
-    categoryName:string,
-    parentCategoryId:number,
-    userId:number
+export interface ICategory {
+    categoryId: number,
+    categoryName: string,
+    parentCategoryId: number,
+    userId: number
 }
 
 export class Customer {
-    CustId:   number;
-    name:     string;
+    CustId: number;
+    name: string;
     MobileNo: string;
     Password: string;
 
-    constructor(){
-        this.CustId=0,
-        this.name='',
-        this.MobileNo='',
-        this.Password=''
+    constructor() {
+        this.CustId = 0,
+            this.name = '',
+            this.MobileNo = '',
+            this.Password = ''
     }
 }
 
-export class Login{
-    UserName:string;
-    UserPassword:string;
+export class Login {
+    UserName: string;
+    UserPassword: string;
 
-    constructor(){
-        this.UserName="",
-        this.UserPassword=''
+    constructor() {
+        this.UserName = "",
+            this.UserPassword = ''
     }
 }
 
@@ -47,5 +47,4 @@ export interface IProduct {
     categoryId: number
     productImageUrl: string
     categoryName: string
-  }
-  
+}

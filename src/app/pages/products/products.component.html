@@ -7,9 +7,9 @@
             }
         </div>
         <div class="col-10">
-            <div class="row">
+            <div class="row mt-3">
                 @for (item of productList(); track $index) {
-                    <div class="col-3">
+                    <div class="col-3 mt-4">
                         <div class="card product-card">
                             <img [src]="item.productImageUrl" class="card-img-top product-image" alt="Product Image">
                             <span class="category-badge">{{item.categoryName}}</span>
