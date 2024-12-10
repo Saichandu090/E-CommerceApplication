@@ -1,14 +1,15 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Customer, IJsonResponse, Login } from './model/interface/response';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { Customer, ICart, IJsonResponse, Login } from './model/interface/response';
 import { FormsModule } from '@angular/forms';
 import { MasterService } from './services/master.service';
 import { Constant } from './constant/constant';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule],
+  imports: [RouterOutlet,FormsModule,CommonModule,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -67,10 +68,17 @@ export class AppComponent implements OnInit{
     const isUser=localStorage.getItem(Constant.LOCAL_LEY);
     if(isUser !=null){
       const parseObj=JSON.parse(isUser);
-
       this.loggedInUser=parseObj; 
+      this.getCartItems();
     }
+    this.masterService.onCartAdded.subscribe((res:boolean)=>{
+      if(res){
+        this.getCartItems()
+      }
+    })
   }
+
+  
 
   onLogin(){
     this.masterService.loginCustomer(this.loginObj).subscribe((res:IJsonResponse)=>{
@@ -92,10 +100,33 @@ export class AppComponent implements OnInit{
 
   //=====================================//
 
-  isPopUpOpen:boolean=false;
+  isPopUpOpen:boolean=true;
 
   showCartPopUp(){
     this.isPopUpOpen=!this.isPopUpOpen
+  }
+
+  //====================================//
+
+  cartData:ICart[]=[];
+
+  getCartItems(){
+    this.masterService.getCartProductsByCustomerId(this.loggedInUser.custId).subscribe((res:IJsonResponse)=>{
+      if(res.result){
+        this.cartData=res.data
+      }
+    })
+  }
+
+  onRemoveProduct(id:number){
+    this.masterService.deleteProductFromCartById(id).subscribe((res:IJsonResponse)=>{
+      if(res.result){
+        alert("Product removed from cart");
+        this.getCartItems();
+      }else{
+        alert(res.message)
+      }
+    })
   }
 
 }

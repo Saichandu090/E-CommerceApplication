@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadAllProducts();
-    this.categoryList$ = this.masterService.GetAllCategory().pipe(
+    this.categoryList$ = this.masterService.getAllCategory().pipe(
       map(item => item.data)
     )
   }
@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   //==============================================//
 
   getProductByCategoryId(categoryId: number) {
-    this.masterService.GetAllProductsByCategoryId(categoryId).subscribe((res: IJsonResponse) => {
+    this.masterService.getAllProductsByCategoryId(categoryId).subscribe((res: IJsonResponse) => {
       this.productList.set(res.data);
     })
   }
@@ -61,13 +61,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   loggedInUser: Customer = new Customer();
 
   constructor() {
-    const isUser = localStorage.getItem(Constant.LOCAL_LEY);
-    if (isUser != null) {
-      const parseObj = JSON.parse(isUser);
-
-      this.loggedInUser = parseObj;
-    }
+    this.loggedInUser=this.masterService.loggedInUser; // reusing the same user from master service making use of everywhere
   }
+
+
   onAddToCart(id: number) {
     debugger;
     const newObj: CartModel = new CartModel();
@@ -76,6 +73,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.masterService.addToCart(newObj).subscribe((res:IJsonResponse)=>{
       if(res.result){
         alert("Product added to Cart")
+        this.masterService.onCartAdded.next(true) // emitting the subject and this subject should be subscribed in app component
       }else{
         alert(res.message)
       }
