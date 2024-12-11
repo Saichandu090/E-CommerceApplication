@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { CartModel, Customer, IJsonResponse, Login, OrderModel } from '../model/interface/response';
+import { IJsonResponse} from '../model/interface/response';
 import { Constant } from '../constant/constant';
+import { CartModel, Customer, Login, OrderModel } from '../model/class/response';
 
 @Injectable({
   providedIn: 'root'

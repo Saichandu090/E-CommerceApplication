@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MasterService } from '../../services/master.service';
-import { ICart, IJsonResponse, OrderModel } from '../../model/interface/response';
+import { ICart, IJsonResponse } from '../../model/interface/response';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { OrderModel } from '../../model/class/response';
 
 @Component({
   selector: 'app-create-order',

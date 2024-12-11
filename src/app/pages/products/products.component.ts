@@ -1,9 +1,10 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { MasterService } from '../../services/master.service';
-import { CartModel, Customer, ICategory, IJsonResponse, IProduct } from '../../model/interface/response';
+import { ICategory, IJsonResponse, IProduct } from '../../model/interface/response';
 import { map, Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Constant } from '../../constant/constant';
+import { CartModel, Customer } from '../../model/class/response';
 
 @Component({
   selector: 'app-products',

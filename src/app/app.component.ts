@@ -1,10 +1,11 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { Customer, ICart, IJsonResponse, Login } from './model/interface/response';
+import { ICart, IJsonResponse } from './model/interface/response';
 import { FormsModule } from '@angular/forms';
 import { MasterService } from './services/master.service';
 import { Constant } from './constant/constant';
 import { CommonModule } from '@angular/common';
+import { Customer, Login } from './model/class/response';
 
 @Component({
   selector: 'app-root',
